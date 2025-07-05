@@ -3,6 +3,7 @@ import express, { Application, NextFunction, Request, Response } from "express";
 import path from "path";
 import { errorHandler } from "./app/middleware/ErrorHandler";
 import bookRouter from "./app/modules/books/book.routes";
+import borrowRoutes from "./app/modules/borrow/borrow.route";
 
 const app: Application = express();
 
@@ -11,6 +12,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/books", bookRouter);
+app.use("/api/borrow", borrowRoutes);
 
 // Root route
 app.get("/", (_req: Request, res: Response) => {

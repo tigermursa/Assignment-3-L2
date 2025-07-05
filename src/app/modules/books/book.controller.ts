@@ -73,3 +73,61 @@ export const getBookById = async (
     next(error);
   }
 };
+
+//update
+// src/app/controllers/book.controller.ts
+
+export const updateBook = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { bookId } = req.params;
+    const updated = await BookService.updateBook(bookId, req.body);
+
+    if (!updated) {
+      res.status(404).json({
+        success: false,
+        message: "Book not found",
+      });
+      return;
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Book updated successfully",
+      data: updated,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//delete
+export const deleteBook = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { bookId } = req.params;
+    const deleted = await BookService.deleteBook(bookId);
+
+    if (!deleted) {
+      res.status(404).json({
+        success: false,
+        message: "Book not found",
+      });
+      return;
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Book deleted successfully",
+      data: null,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

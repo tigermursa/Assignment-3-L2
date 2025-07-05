@@ -35,8 +35,22 @@ const getBookById = async (id: string) => {
   return result;
 };
 
+//update
+const updateBook = async (id: string, payload: Partial<IBook>) => {
+  const result = await Book.findByIdAndUpdate(id, payload, { new: true });
+  return result;
+};
+
+//delete
+const deleteBook = async (id: string) => {
+  const result = await Book.findByIdAndDelete(id);
+  return result;
+};
+
 export const BookService = {
   createBook,
   getAllBooks,
   getBookById,
+  updateBook,
+  deleteBook,
 };
