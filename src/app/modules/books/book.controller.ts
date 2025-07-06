@@ -75,7 +75,6 @@ export const getBookById = async (
 };
 
 //update
-// src/app/controllers/book.controller.ts
 
 export const updateBook = async (
   req: Request,
