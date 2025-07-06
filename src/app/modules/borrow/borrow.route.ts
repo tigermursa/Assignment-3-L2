@@ -3,7 +3,7 @@ import { borrowBook, getBorrowSummary } from "./borrow.controller";
 
 const borrowRoutes = express.Router();
 
-borrowRoutes.post("/", borrowBook);
-borrowRoutes.get("/", getBorrowSummary);
+borrowRoutes.post("/", borrowBook); //borrow book
+borrowRoutes.get("/", getBorrowSummary); //get summary
 
 export default borrowRoutes;

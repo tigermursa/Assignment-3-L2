@@ -11,17 +11,22 @@ const borrowBook = async (payload: IBorrow) => {
     const book = await Book.findById(payload.book).session(session);
     if (!book) throw new Error("Book not found");
 
+    if (book.copies === 0) {
+      throw new Error("Book is currently not available for borrowing");
+    }
+
     if (book.copies < payload.quantity) {
       throw new Error("Not enough copies available");
     }
 
     book.copies -= payload.quantity;
-    if (book.copies === 0) {
-      book.available = false;
-    }
+
+    book.available = book.copies > 0;
+
     await book.save({ session });
 
     const borrowRecord = await Borrow.create([payload], { session });
+
     await session.commitTransaction();
     session.endSession();
 

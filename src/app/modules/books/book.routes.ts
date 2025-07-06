@@ -12,10 +12,10 @@ import validateRequest from "../../middleware/validateRequest";
 
 const bookRouter = express.Router();
 
-bookRouter.post("/", validateRequest(createBookZodSchema), createBook);
-bookRouter.get("/", getAllBooks);
-bookRouter.get("/:bookId", getBookById);
-bookRouter.put("/:bookId", updateBook);
-bookRouter.delete("/:bookId", deleteBook);
+bookRouter.post("/", validateRequest(createBookZodSchema), createBook); //create
+bookRouter.get("/", getAllBooks); //getAll
+bookRouter.get("/:bookId", getBookById); //getById
+bookRouter.put("/:bookId", updateBook); //update
+bookRouter.delete("/:bookId", deleteBook); //delete
 
 export default bookRouter;
